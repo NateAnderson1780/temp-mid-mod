@@ -18,3 +18,11 @@
   </div>
 <% end %>
 </div>
+</br>
+</br>
+</br>
+</br>
+<% @links.each do |link| %>
+  URL: <%= link_to "#{link.title}", link.url_link %></br>
+  <%= button_to "Edit", edit_link_path(link), method: 'get' %></br></br>
+<% end %>
