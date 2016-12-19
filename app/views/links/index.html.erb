@@ -1,9 +1,10 @@
+<%= @link.errors.full_messages.first if @link.errors.any? %>
 <div>
 <%= form_for @link do |f| %>
 <div class="form-group row">
-  <%= f.label :name, class: "col-xs-2 col-form-label" %>
+  <%= f.label :url_link, class: "col-xs-2 col-form-label" %>
   <div class="col-xs-10">
-    <%= f.text_field :url, placeholder: "URL", class: "form-control" %>
+    <%= f.text_field :url_link, placeholder: "URL", class: "form-control" %>
   </div>
 </div>
   <div class="form-group row">
