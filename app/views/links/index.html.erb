@@ -23,6 +23,21 @@
 </br>
 </br>
 <% @links.each do |link| %>
+  <div class="form-group row">
   URL: <%= link_to "#{link.title}", link.url_link %></br>
+  Read: <%= link.read.to_s.capitalize %></br>
+  <% if link.read == false %>
+    <%= form_for link do |f| %>
+     <%= f.hidden_field :read, :value=>"true"%>
+     <%= f.submit "Mark As Read", class: 'btn btn-success' %>
+    <% end %>
+  <% else %>
+    <%= form_for link do |f| %>
+     <%= f.hidden_field :read, :value=>"false"%>
+     <%= f.submit "Mark As Unread", class: 'btn btn-danger' %>
+    <% end %>
+  <% end %></br>
+  
   <%= button_to "Edit", edit_link_path(link), method: 'get' %></br></br>
+</div>
 <% end %>
