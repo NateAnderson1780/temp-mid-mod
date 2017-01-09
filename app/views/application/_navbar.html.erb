@@ -1,0 +1,14 @@
+<div class="navbar navbar-default navbar-static-top", id: "navbar">
+  <a href="/" class='navbar-brand'>URLockbox</a>
+    <div class="container-fluid">
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li> Welcome, <%= link_to "#{current_user.email}", links_path %> </li>
+          <li> <%= link_to "Logout", logout_path, method: "delete" %> </li>
+        <% else %>
+          <li> <%= link_to "Login", login_path %> </li>
+          <li> <%= link_to "Sign Up", signup_path %> </li>
+        <% end %>
+    </ul>
+  </div>
+</div>
