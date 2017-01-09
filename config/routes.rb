@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: "links#index"
 
   resources :links, only: [:index]
+  
+  get '/login_or_sign_up', to: 'welcome#index', as: 'welcome'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
