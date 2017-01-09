@@ -28,6 +28,6 @@ class Api::V1::LinksController < ApplicationController
   private
 
   def link_params
-    params.permit(:title, :url, :read)
+    params.permit(:id, :title, :url, :read)
   end
 end
