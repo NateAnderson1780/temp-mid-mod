@@ -5,6 +5,11 @@ $(document).ready(function(){
   $newLinkUrl  = $("#link-url");
 
   $("#new-link").on('submit', createLink);
+  
+  $.getJSON('/api/v1/links')
+    .then(function(links) {
+      links.forEach(renderLink);
+    })
 })
 
 function createLink (event){
