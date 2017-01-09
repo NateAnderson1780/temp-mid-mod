@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to join_path unless current_user
+    redirect_to welcome_path unless current_user
   end
 end
