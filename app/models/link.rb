@@ -6,4 +6,6 @@ class Link < ApplicationRecord
       .group("links.url")
       .order('count("reads".id) DESC').limit(10)
   }
+  belongs_to :user 
+  validates :url, url: true
 end
