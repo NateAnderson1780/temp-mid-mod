@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   
   get '/login_or_sign_up', to: 'welcome#index', as: 'welcome'
 
-  get '/login' => 'sessions#new'
+  get '/login' => 'sessions#new', as: 'login'
   post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  delete '/logout' => 'sessions#destroy'
 
-  get '/signup' => 'users#new'
+  get '/signup' => 'users#new', as: 'signup'
   post '/users' => 'users#create'
 
   namespace :api do
