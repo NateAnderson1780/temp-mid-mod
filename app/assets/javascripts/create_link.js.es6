@@ -33,15 +33,21 @@ function getLinkData() {
 }
 
 function renderLink(link){
-  $("#links-list").append( linkHTML(link) )
-  // clearLink();
+  $.when( 
+  $("#links-list").prepend( linkHTML(link) )
+).then(
+    $('.edit-link').first().on('click', editLink)
+  ).then(
+    $('.mark-as-read').first().on('click', markRead)
+  )
 }
 
 function linkHTML(link) {
-
+    var red = '';
+    if(link.read) {red = 'red'}
     return `<div class='link' data-id='${link.id}' id="link-${link.id}">
               <p class='link-title'>${ link.title }</p>
-              <p class='link-url'>${ link.url }</p>
+              <p class='link-url ${red}'>${ link.url }</p>
 
               <p class="link_read">
                 ${ link.read }
