@@ -38,26 +38,44 @@ function renderLink(link){
 ).then(
     $('.edit-link').first().on('click', editLink)
   ).then(
-    $('.mark-as-read').first().on('click', markRead)
+    $('.mark-read').first().on('click', markRead)
+  ).then(
+    $('.mark-unread').first().on('click', markUnread)
+  ).then(
+    $('.delete-link').first().on('click', deleteLink)
   )
 }
 
 function linkHTML(link) {
-    var red = '';
-    if(link.read) {red = 'red'}
+    if(link.read) {
     return `<div class='link' data-id='${link.id}' id="link-${link.id}">
               <p class='link-title'>${ link.title }</p>
-              <p class='link-url ${red}'>${ link.url }</p>
+              <p class='link-url red'>${ link.url }</p>
 
               <p class="link_read">
-                ${ link.read }
+                Read
               </p>
               <p class="link_buttons">
-                <button class="mark-read">Mark as Read</button>
+                <button class="mark-unread">Mark as Unread</button>
                 <button class='edit-link'>Edit</button>
                 <button class='delete-link'>Delete</button>
               </p>
-            </div>`
+            </div>`}
+    else {
+      return `<div class='link' data-id='${link.id}' id="link-${link.id}">
+                <p class='link-title'>${ link.title }</p>
+                <p class='link-url'>${ link.url }</p>
+
+                <p class="link_read">
+                  Unread
+                </p>
+                <p class="link_buttons">
+                  <button class="mark-read">Mark as Read</button>
+                  <button class='edit-link'>Edit</button>
+                  <button class='delete-link'>Delete</button>
+                </p>
+              </div>`
+    }
 }
 
 function clearLink() {
