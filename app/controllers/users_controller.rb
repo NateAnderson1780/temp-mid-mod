@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to :root
     else
+      flash[:notice] = "User credentials not valid"
       redirect_to :signup
     end
   end
