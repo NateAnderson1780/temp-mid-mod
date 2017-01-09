@@ -102,3 +102,85 @@ function editLink() {
   )
 }
 
+function updateLink(){
+  var parent_link = $(this).closest('.link')
+  var id = $(parent_link).data('id')
+  var title = $(parent_link).find('.link-title').text();
+  var url = $(parent_link).find('.link-url').text();
+  $(parent_link).find('.link-title').attr('contenteditable', false);
+  $(parent_link).find('.link-url').attr('contenteditable', false);
+  $.ajax({
+    url: '/api/v1/links/' + id,
+    type: 'PUT',
+    data: {
+      title: title,
+      url: url
+    }
+  }).fail(
+    displayFailure
+  ).then(
+    $(parent_link).removeClass('edit-box')
+  ).then(
+    $(this).text('Edit')
+  ).then(
+    $(this).off()
+  ).then(
+    $(this).on('click', editLink)
+  )
+} 
+
+function deleteLink() {
+  var id = $(this).closest('.link').data('id');
+  $.ajax({
+    url: '/api/v1/links/' + id,
+    method: 'DELETE',
+    type: 'json',
+  }).then(removeLink.bind(this))
+}
+
+function removeLink(){
+  $(this).closest(".link").remove()
+}
+
+function markRead() {
+  console.log("WIN");
+  var parent_link = $(this).closest('.link')
+  var id = $(parent_link).data('id')
+  var title = $(parent_link).find('.link-title').text();
+  var url = $(parent_link).find('.link-url').text();
+  $.ajax({
+    url: '/api/v1/links/' + id,
+    type: 'PUT',
+    data: {
+      read: true
+    }
+  }).then(
+    $(this).parent().siblings('.link_read').text('Read')
+  ).then(
+    $(this).parent().siblings('.link-url').css('color', 'red')
+  ).then(
+    $(this).text('Mark As Unread')
+    )
+}
+
+function markUnread() {
+  console.log("WIN");
+  var parent_link = $(this).closest('.link')
+  var id = $(parent_link).data('id')
+  var title = $(parent_link).find('.link-title').text();
+  var url = $(parent_link).find('.link-url').text();
+  $.ajax({
+    url: '/api/v1/links/' + id,
+    type: 'PUT',
+    data: {
+      read: false
+    }
+  }).then(
+    $(this).parent().siblings('.link_read').text('Unread')
+   ).then(
+    $(this).text('Mark As Read')
+   ).then(
+     $(this).parent().siblings('.link-url').css('color', 'black')
+   )
+}
+
