@@ -24,10 +24,15 @@ class Api::V1::LinksController < ApplicationController
       render json: @link.errors.full_messages, status: 500
     end
   end
+  
+  def destroy
+    link = Link.find(params[:id])
+    link.destroy
+  end
 
   private
 
   def link_params
-    params.permit(:id, :title, :url, :read)
+    params.permit(:id, :title, :url, :read, :user_id)
   end
 end
