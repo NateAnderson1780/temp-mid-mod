@@ -16,6 +16,7 @@ function createLink (event){
 
   $.post("/api/v1/links", link)
    .then( renderLink )
+   .then( clearLink )
    .fail( displayFailure )
  }
 
