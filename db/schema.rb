@@ -17,14 +17,14 @@ ActiveRecord::Schema.define(version: 20170104174433) do
 
   create_table "links", force: :cascade do |t|
     t.string   "title"
-    t.string   "url"
+    t.string   "url_link"
     t.boolean  "read",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.index ["user_id"], name: "index_links_on_user_id", using: :btree
   end
-
+  
   create_table "reads", force: :cascade do |t|
     t.integer  "link_id"
     t.datetime "created_at", null: false

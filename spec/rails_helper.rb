@@ -108,6 +108,7 @@ def user_logs_in
   end
   
   fill_in 'session[email]', with: 'nate@nate.com'
+
   fill_in 'session[password]', with: 'password'
   within('.session') do
     click_on 'Login'
