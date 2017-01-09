@@ -1,43 +1,21 @@
-<%= @link.errors.full_messages.first if @link.errors.any? %>
-<div>
-<%= form_for @link do |f| %>
-<div class="form-group row">
-  <%= f.label :url_link, class: "col-xs-2 col-form-label" %>
-  <div class="col-xs-10">
-    <%= f.text_field :url_link, placeholder: "URL", class: "form-control" %>
-  </div>
-</div>
-  <div class="form-group row">
-    <%= f.label :title, class: "col-xs-2 col-form-label" %>
-    <div class="col-xs-10">
-      <%= f.text_field :title, placeholder: "Title", class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <%= f.submit "Submit Link", class: "btn btn-primary btn-lg btn-block" %>
-  </div>
+<form id="new-link">
+  <label>URL:
+    <input id="link-url">
+  </label>
+  <label>Title:
+    <input id="link-title">
+  </label>
+  <input type="submit" value="Add Link">
+</form>
+
+<div id="links-list"></div>
+
+<h2>Hot Reads!</h2>
+<ol id="hot-reads">
+<% @hot_links.each do |read| %>
+  <li class='hot-read'>
+    <a href="<%= read.url %>"><%= read.url %></a>
+  </li>
 <% end %>
-</div>
-</br>
-</br>
-</br>
-</br>
-<% @links.each do |link| %>
-  <div class="form-group row">
-  URL: <%= link_to "#{link.title}", link.url_link %></br>
-  Read: <%= link.read.to_s.capitalize %></br>
-  <% if link.read == false %>
-    <%= form_for link do |f| %>
-     <%= f.hidden_field :read, :value=>"true"%>
-     <%= f.submit "Mark As Read", class: 'btn btn-success' %>
-    <% end %>
-  <% else %>
-    <%= form_for link do |f| %>
-     <%= f.hidden_field :read, :value=>"false"%>
-     <%= f.submit "Mark As Unread", class: 'btn btn-danger' %>
-    <% end %>
-  <% end %></br>
-  
-  <%= button_to "Edit", edit_link_path(link), method: 'get' %></br></br>
-</div>
-<% end %>
+</ol>
+<img src="https://m.popkey.co/4c7272/QL6mJ.gif">

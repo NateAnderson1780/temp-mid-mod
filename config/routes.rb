@@ -1,21 +1,20 @@
 Rails.application.routes.draw do
-  root to: 'home#index'
-  
-  get 'login_or_sign_up', to: 'welcome#index', as: 'welcome'
-  
-  get 'signup', to: 'users#new'
-  
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
+  root to: "links#index"
 
-  delete 'logout', to: 'sessions#destroy'
+  resources :links, only: [:index]
+  
+  get '/login_or_sign_up', to: 'welcome#index', as: 'welcome'
 
-  resources :links, only: [:index, :create, :edit, :update]
-  resources :users, only: [:create]
+  get '/login' => 'sessions#new', as: 'login'
+  post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new', as: 'signup'
+  post '/users' => 'users#create'
 
   namespace :api do
     namespace :v1 do
-      resources :links, only: [:create]
+      resources :links, only: [:create, :update]
     end
   end
 end

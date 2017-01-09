@@ -1,21 +1,20 @@
 class SessionsController < ApplicationController
   def new
-    
   end
-  
+
   def create
-    user = User.find_by(email_address: params[:session][:email_address])
-    if user && user.authenticate(params[:session][:password])
+    user = User.find_by_email(params[:email])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to links_path
+      redirect_to :root
     else
-      flash.now[:danger] = "Email and/or Password is invalid, please try again."
-      render :new
+      flash[:notice] = "Email and/or Password is invalid, please try again."
+      redirect_to :login
     end
   end
-  
+
   def destroy
-    session.clear
-    redirect_to login_path
+    session[:user_id] = nil
+    redirect_to welcome_path
   end
 end

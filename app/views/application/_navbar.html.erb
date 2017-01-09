@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <li> <%= link_to "#{current_user.name}", links_path %> </li>
+          <li> Welcome, <%= link_to "#{current_user.email}", links_path %> </li>
           <li> <%= link_to "Logout", logout_path, method: "delete" %> </li>
         <% else %>
           <li> <%= link_to "Login", login_path %> </li>

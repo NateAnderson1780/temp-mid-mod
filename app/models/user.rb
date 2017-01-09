@@ -1,8 +1,6 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_secure_password
-  has_many :links
-  validates_presence_of :name
-  validates_presence_of :email_address, uniqueness: true
+  validates :email, presence: true, uniqueness: {message: "Email already in use"}
   validates_presence_of :password
   validates_confirmation_of :password
 end
