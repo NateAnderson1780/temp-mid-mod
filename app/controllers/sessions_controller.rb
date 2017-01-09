@@ -8,12 +8,13 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to :root
     else
+      flash[:notice] = "Email and/or Password is invalid, please try again."
       redirect_to :login
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to :login
+    redirect_to welcome_path
   end
 end
