@@ -68,3 +68,19 @@ function clearLink() {
 function displayFailure(failureData){
   console.log("FAILED attempt to create new Link: " + failureData.responseText);
 }
+
+function editLink() {
+  console.log("WIN");
+  var parent_link = $(this).closest('.link')
+  $(parent_link).addClass('edit-box')
+  $(parent_link).find('.link-title').attr('contenteditable', true)
+  $(parent_link).find('.link-url').attr('contenteditable', true)
+  $.when(
+    $(this).text('updateLink')
+  ).then(
+    $(this).off()
+  ).then(
+    $(this).on('click', updateLink)
+  )
+}
+
