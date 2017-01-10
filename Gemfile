@@ -18,7 +18,7 @@ gem 'better_errors', group: :development
 gem 'react-rails'
 gem 'sprockets-es6'
 gem 'validate_url'
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 
 # gem 'unicorn'
 
@@ -35,7 +35,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'pry'
-  gem 'simplecov', :require => false
+  gem 'simplecov', require: false
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
