@@ -19,6 +19,7 @@ gem 'react-rails'
 gem 'sprockets-es6'
 gem 'validate_url'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'launchy'
 
 # gem 'unicorn'
 
