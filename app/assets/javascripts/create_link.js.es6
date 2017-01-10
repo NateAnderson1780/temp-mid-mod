@@ -194,7 +194,15 @@ function markRead() {
     $(this).parent().siblings('.link-url').css('color', 'red')
   ).then(
     $(this).text('Mark As Unread')
-    )
+  ).then(
+  $.post({
+    url: 'http://localhost:3001/api/v1/create_link',
+    data: {
+      title: title,
+      url: url
+    },
+    dataType: 'json'
+  }))
 }
 
 function markUnread() {
