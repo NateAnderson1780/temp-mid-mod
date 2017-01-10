@@ -10,7 +10,41 @@ $(document).ready(function(){
     .then(function(links) {
       links.forEach(renderLink);
     })
+    
+  attachFilters()
 })
+
+function attachFilters(){
+  $('#read').on('click', filterReads)
+  $('#unread').on('click', filterUnreads)
+}
+
+function filterReads(){
+  console.log("WIN");
+  var checkStatus = $(this).is(':checked')
+  $('.link').each(function() {
+    var read = $(this).find('.link_read').text().trim()
+
+    if (read === 'true' && checkStatus) {
+      $(this).hide()
+    } else {
+      $(this).show()
+    }
+  })
+}
+
+function filterUnreads(){
+  var checkStatus = $(this).is(':checked')
+  $('.link').each(function() {
+    var read = $(this).find('.link_read').text().trim()
+
+    if (read === 'false' && checkStatus) {
+      $(this).hide()
+    } else {
+      $(this).show()
+    }
+  })
+}
 
 function createLink (event){
   event.preventDefault();
